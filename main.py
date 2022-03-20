@@ -37,6 +37,7 @@ while True:
         
         if(pyautogui.locateOnScreen('./img/unlock6.png')):
             print('Login MetaMask')
+            listener.stop()
             time.sleep(2)
             pyautogui.click(1684,137)
             if(pyautogui.locateOnScreen('./img/unlock3.png')):
