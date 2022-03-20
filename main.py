@@ -8,8 +8,6 @@ from pynput.keyboard import Key, Listener
 keys = []
 
 
-    
-    
 while True:
     if(pyautogui.locateOnScreen('./img/unlock1.png')):
         print('Open MetaMask')
