@@ -1,1 +1,0 @@
-34Key.backspaceKey.backspaceKey.backspaceKey.backspace12345678Key.shiftKey.cmdSKey.shiftSKey.cmdKey.shiftSKey.backspace<102>Key.enterKey.rightKey.backspace<102>Key.backspaceKey.ctrl_l\x03Key.esc12345678hKey.ctrl_l\x18Key.enterKey.ctrl_l\x1612345678pppppppppppppppppp
